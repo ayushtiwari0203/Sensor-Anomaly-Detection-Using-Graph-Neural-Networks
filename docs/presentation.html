@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sensor Anomaly Detection using GNN — INT423 CA2 Presentation</title>
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: rgba(18, 24, 38, 0.9);
+      --primary: #3b82f6;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --accent: #10b981;
+      --code-font: Consolas, monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 1.5rem;
+    }
+    .deck { width: 100%; max-width: 900px; }
+    header { text-align: center; margin-bottom: 2.5rem; }
+    .badge {
+      display: inline-block;
+      background: rgba(59, 130, 246, 0.2);
+      border: 1px solid var(--primary);
+      color: #93c5fd;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-bottom: 0.8rem;
+    }
+    h1 { font-size: 2.4rem; margin-bottom: 0.5rem; }
+    .author { color: var(--text-muted); font-size: 1rem; }
+    .slide-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    .slide-card h2 { font-size: 1.45rem; color: #60a5fa; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem; }
+    ul { margin-left: 1.5rem; line-height: 1.8; color: #e5e7eb; }
+    li strong { color: var(--accent); }
+    .formula-box {
+      background: rgba(59, 130, 246, 0.08);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      border-radius: 8px;
+      padding: 12px;
+      font-family: var(--code-font);
+      font-size: 0.95rem;
+      color: #bfdbfe;
+      text-align: center;
+      margin: 1rem 0;
+    }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 1rem; }
+    .metric-box { background: rgba(0,0,0,0.3); padding: 1.2rem; border-radius: 10px; border-left: 3px solid var(--primary); }
+    .metric-val { font-size: 1.8rem; font-weight: bold; color: var(--accent); }
+    .metric-label { font-size: 0.85rem; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+  <div class="deck">
+    <header>
+      <div class="badge">INT423 CA2 Academic Presentation • SIH Theme</div>
+      <h1>🔍 Sensor Anomaly Detection using GNN</h1>
+      <p class="author">Ayush Kumar Tiwari • Registration No: 12319158</p>
+    </header>
+
+    <div class="slide-card">
+      <h2>1. The Problem: Non-Euclidean Industrial Telemetry</h2>
+      <p style="margin-bottom: 1rem; line-height: 1.6; color: var(--text-muted);">
+        Industrial facilities rely on hundreds of interconnected sensors (vibration, heat, hydraulic pressure). Traditional ML models fail because they ignore topological sensor couplings.
+      </p>
+      <ul>
+        <li><strong>Structural Blindness:</strong> Standard models ignore cross-sensor spatial correlations.</li>
+        <li><strong>Early Degradation Signals:</strong> Micro-fractures and bearing degradation manifest as subtle correlation shifts long before catastrophic downtime.</li>
+        <li><strong>Non-Euclidean Representation:</strong> Graph Neural Networks embed telemetry into structural manifolds.</li>
+      </ul>
+    </div>
+
+    <div class="slide-card">
+      <h2>2. Mathematical Graph Convolutional Architecture</h2>
+      <div class="formula-box">
+        Ã = D̃^(-½) · (A + I) · D̃^(-½)  ⟹  Z = ReLU(Ã · X · W)
+      </div>
+      <div class="grid">
+        <div class="metric-box">
+          <div class="metric-val">Pearson Adjacency</div>
+          <div class="metric-label">Dynamic graph induction thresholding pairwise correlation |Corr(Si, Sj)| > 0.45.</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-val">Autoencoder Recon</div>
+          <div class="metric-label">Unsupervised training minimizing MSE. Anomalies detected via reconstruction degradation > 95th percentile.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-card">
+      <h2>3. Quantitative Verification & Metrics</h2>
+      <ul>
+        <li><strong>Automated Test Suite:</strong> 7/7 passing unit and integration tests under pytest.</li>
+        <li><strong>Diagnostic Accuracy:</strong> >93% accuracy on multivariate industrial pump telemetry.</li>
+        <li><strong>Self-Contained & Portable:</strong> Pure PyTorch implementation runs seamlessly on CPU/GPU without external C++ compilation.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

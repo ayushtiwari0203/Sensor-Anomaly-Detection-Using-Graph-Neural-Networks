@@ -1,0 +1,29 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# PyTorch checkpoints and weights
+*.pt
+*.pth
+
+# Large datasets
+data/*.csv
+data/*.zip
+
+# Virtual environments
+.env
+.venv/
+venv/
+env/
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# OS and IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
